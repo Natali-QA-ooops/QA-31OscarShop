@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.Random;
 
 public class PageBase {
     protected WebDriver driver;
@@ -16,6 +16,29 @@ public class PageBase {
     public PageBase(WebDriver driver){
         this.driver = driver;
     }
+
+    // ============================================method=======================================
+
+    public void click(By locator) {
+        driver.findElement(locator).click();
+    }
+
+    public void should(WebElement element, int time) {
+        new WebDriverWait(driver, time)
+                .until(ExpectedConditions.visibilityOf(element));
+    }
+    public void type(WebElement element, String text) {
+        if (text != null) {
+            element.click();
+            element.clear();
+            element.sendKeys(text);
+        }
+    }
+
+
+    // ============================================method=======================================
+
+
     public void uploadFile(WebElement element, String filePath){
         waitUntilElementClickable(element, timeWaitElement);
         inputText(element, filePath);
