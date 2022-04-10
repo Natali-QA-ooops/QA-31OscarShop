@@ -1,5 +1,6 @@
 package tests.user;
 
+import helpers.MyDataProvider;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -24,13 +25,11 @@ public class RegistrationTests extends TestBase {
     }
 
 
-    @Test
-    public void registrationPositiveTest(){
+    @Test (dataProvider = "registerValidDataCSV", dataProviderClass = MyDataProvider.class)
+    public void registrationPositiveTest(String email, String password, String confirmPassword){
         homePage.openLoginRegForm();
         Assert.assertTrue(loginAndRegisterPage.loginAndRegistrationFormIsOpened());
-        loginAndRegisterPage.fillEmailField(email);
-        loginAndRegisterPage.fillPasswordField(password);
-        loginAndRegisterPage.fillConfirmPasswordField(password);
+        loginAndRegisterPage.fillRegisterForm(email,password,confirmPassword);
         loginAndRegisterPage.clickOnRegisterButton();
         Assert.assertTrue(homePage.registerSuccessMessageIsDisplayed());
     }

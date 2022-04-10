@@ -1,5 +1,6 @@
 package tests.user;
 
+import helpers.MyDataProvider;
 import models.User;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -19,36 +20,40 @@ public class LoginTests extends TestBase {
         homePage = PageFactory.initElements(driver, HomePage.class);
     }
 
-    @Test
-    public void loginSuccessTest() {
+    @Test (dataProvider = "loginValidDataCSV", dataProviderClass = MyDataProvider.class)
+    public void loginSuccessTest(String email, String password) {
         homePage.openLoginRegForm();
         Assert.assertTrue(loginAndRegisterPage.loginFormIsDisplayed());
-        loginAndRegisterPage.fillLoginForm(User.builder().email("zaitsevaooops2022@gmail.com").password("ZPthgievRi295nu").build());
+        loginAndRegisterPage.fillLoginForm(email, password);
         loginAndRegisterPage.clickBTNLogIn();
         Assert.assertTrue(homePage.loginSuccessMassageIsDiplayed());
         homePage.logOut();
     }
 
-
-    @Test   //Registered user can't login with incorrect email and valid password
-    public void wrongEmailValidPassTest() {
+    //Registered user can't login with wrong email and valid password
+    @Test  (dataProvider = "loginWrongEmailDataCSV", dataProviderClass = MyDataProvider.class)
+    public void wrongEmailValidPassTest(String email, String password) {
         homePage.openLoginRegForm();
         Assert.assertTrue(loginAndRegisterPage.loginFormIsDisplayed());
-        loginAndRegisterPage.fillLoginForm(User.builder().email("zaitsevaooops2022@gmail").password("ZPthgievRi295nu").build());
+        loginAndRegisterPage.fillLoginForm(email,password);
         loginAndRegisterPage.clickBTNLogIn();
-        Assert.assertTrue(loginAndRegisterPage.allertIsDisplayed());
-        Assert.assertTrue(loginAndRegisterPage.massageErrorIsDisplaeyd());
+
+        Assert.assertTrue(loginAndRegisterPage.allertIsDisplayed());    //FORM Oops! We found some errors - please check the error messages below and try again
+       // Assert.assertTrue(loginAndRegisterPage.massageWrongFormatIsDisplayed());
+        Assert.assertTrue(loginAndRegisterPage.massageErrorIsDisplaeyd()); ////TEXT Oops! We found some errors - please check the error messages below and try again
     }
+//
+//
+//    @Test   //Registered user can't login with incorrect password and valid email
+//    public void wrongPasswValidEmailTest() {
+//        homePage.openLoginRegForm();
+//        Assert.assertTrue(loginAndRegisterPage.loginFormIsDisplayed());
+//        loginAndRegisterPage.fillLoginForm(User.builder().email("zaitsevaooops2022@gmail").password("ZPthgie").build());
+//        loginAndRegisterPage.clickBTNLogIn();
+//        Assert.assertTrue(loginAndRegisterPage.allertIsDisplayed());
+//        Assert.assertTrue(loginAndRegisterPage.massageErrorIsDisplaeyd());
+//    }
 
 
-    @Test   //Registered user can't login with incorrect password and valid email
-    public void wrongPasswValidEmailTest() {
-        homePage.openLoginRegForm();
-        Assert.assertTrue(loginAndRegisterPage.loginFormIsDisplayed());
-        loginAndRegisterPage.fillLoginForm(User.builder().email("zaitsevaooops2022@gmail").password("ZPthgie").build());
-        loginAndRegisterPage.clickBTNLogIn();
-        Assert.assertTrue(loginAndRegisterPage.allertIsDisplayed());
-        Assert.assertTrue(loginAndRegisterPage.massageErrorIsDisplaeyd());
-    }
 
 }
