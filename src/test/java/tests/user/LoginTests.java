@@ -44,15 +44,15 @@ public class LoginTests extends TestBase {
 //    }
 //
 //
-//    @Test   //Registered user can't login with incorrect password and valid email
-//    public void wrongPasswValidEmailTest() {
-//        homePage.openLoginRegForm();
-//        Assert.assertTrue(loginAndRegisterPage.loginFormIsDisplayed());
-//        loginAndRegisterPage.fillLoginForm(User.builder().email("zaitsevaooops2022@gmail").password("ZPthgie").build());
-//        loginAndRegisterPage.clickBTNLogIn();
-//        Assert.assertTrue(loginAndRegisterPage.allertIsDisplayed());
-//        Assert.assertTrue(loginAndRegisterPage.massageErrorIsDisplaeyd());
-//    }
+    @Test   //Registered user can't login with incorrect password and valid email
+    public void wrongPasswValidEmailTest() {
+        homePage.openLoginRegForm();
+        Assert.assertTrue(loginAndRegisterPage.loginFormIsDisplayed());
+        loginAndRegisterPage.fillLoginForm(User.builder().email("zaitsevaooops2022@gmail").password("ZPthgie").build());
+        loginAndRegisterPage.clickBTNLogIn();
+        Assert.assertTrue(loginAndRegisterPage.allertIsDisplayed());
+        Assert.assertTrue(loginAndRegisterPage.massageErrorIsDisplaeyd());
+    }
 
 
 
