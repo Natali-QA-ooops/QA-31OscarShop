@@ -13,23 +13,31 @@ public class LoginAndRegisterPage extends PageBase{
 
     @FindBy(id = "register_form")
     WebElement registerForm;
+
     @FindBy(id = "id_login-username")
     WebElement emailField;
+
     @FindBy(id = "id_login-password")
     WebElement passwordField;
+
     @FindBy(xpath = "//button[@name='login_submit']")
     WebElement btnLogin;
+
     @FindBy(id = "register_form")
     WebElement formLogin;
+
     @FindBy(id = "id_registration-email")
     WebElement regEmail;
+
     @FindBy (id = "id_registration-password1")
     WebElement regPassw1;
+
     @FindBy (id = "id_registration-password2")
     WebElement regPassw2;
 
     @FindBy(xpath = "//div[@class='alert alert-danger']")
     WebElement logAllert;
+
     @FindBy(xpath = "//*[contains(text(),'Oops! We found some errors')]")
     WebElement someErrors;
 

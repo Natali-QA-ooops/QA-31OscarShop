@@ -12,23 +12,28 @@ public class HomePage extends PageBase{
 
     @FindBy(xpath = "//a[contains(.,'Oscar')]")
     WebElement homePageLink;
+
     @FindBy(id = "login_link")
     WebElement loginRegistrationPage;
+
     @FindBy(css = ".alertinner.wicon")
     WebElement massageSuccessReg;
+
     @FindBy(css = "[name=\"language\"]")
     WebElement langSelector;
+
     @FindBy(css = "button.btn.btn-default[type=\"submit\"]")
     WebElement goButton;
+
     @FindBy(css = ".basket-mini a.btn")
     WebElement basketButton;
 
     @FindBy(xpath = "//div[contains(text(),'Welcome back')]")
     WebElement massageSuccessLogin;
 
-
     @FindBy (id = "id_q")
     WebElement searchField;
+
     @FindBy (xpath = "//input[@class='btn btn-default']")
     WebElement searchButton;
 
